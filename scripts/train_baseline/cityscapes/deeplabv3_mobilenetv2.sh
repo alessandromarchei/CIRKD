@@ -1,0 +1,11 @@
+python train_baseline.py \
+    --model deeplabv3_mobilenet_ssseg \
+    --backbone mobilenetv2 \
+    --dataset citys \
+    --batch-size 8 \
+    --lr 0.01 \
+    --max-iterations 80000 \
+    --data /home/sergey/DEV/AI/datasets/cityscapes/ \
+    --save-dir runs/checkpoints/cityscapes/ \
+    --save-dir-name deeplabv3_mobilenet_ssseg_mobilenetv2_citys_baseline \
+    --pretrained-base /home/sergey/DEV/AI/datasets/winycg/imagenet_pretrained/mobilenet_v2-b0353104.pth

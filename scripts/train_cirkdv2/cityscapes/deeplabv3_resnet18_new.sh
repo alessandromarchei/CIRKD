@@ -1,0 +1,17 @@
+python train_cirkdv2.py \
+    --teacher-model deeplabv3 \
+    --student-model deeplabv3 \
+    --teacher-backbone resnet101 \
+    --student-backbone resnet18 \
+    --batch-size 8 \
+    --lr 0.01 \
+    --max-iterations 80000 \
+    --lambda-fitnet 1. \
+    --lambda-minibatch-channel 1. \
+    --lambda-memory-channel 0.1 \
+    --lambda-channel-kd 100. \
+    --data /home/sergey/DEV/AI/datasets/cityscapes/ \
+    --save-dir runs/checkpoints/cityscapes/ \
+    --save-dir-name deeplabv3_resnet101_deeplabv3_resnet18_cirkdv2 \
+    --teacher-pretrained /home/sergey/DEV/AI/datasets/winycg/cirkd/teachers/deeplabv3_resnet101_citys_best_model.pth \
+    --student-pretrained-base /home/sergey/DEV/AI/datasets/winycg/cirkd/pretrained_backbones/resnet18-imagenet.pth
