@@ -73,8 +73,12 @@ class CSTrainValSet(data.Dataset):
         
         size = image.shape
         name = datafiles["name"]
+        
+        #applied during training only
         if self.is_scale:
             image, label = self.generate_scale_label(image, label)
+
+            
         image = np.asarray(image, np.float32)
         image = image - np.array([104.00698793, 116.66876762, 122.67891434])
 
