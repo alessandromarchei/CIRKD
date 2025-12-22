@@ -148,8 +148,10 @@ class MobileNetV2Dilated(nn.Module):
 
         if pretrained != 'None':
             if local_rank is not None:
+                print('load pretrained model on local rank {}'.format(local_rank))
                 old_dict = torch.load(pretrained, map_location=torch.device(local_rank))
             else:
+                print('load pretrained model without local rank')
                 old_dict = torch.load(pretrained)
         
             model_dict = self.net.state_dict()
@@ -201,7 +203,7 @@ def get_mobilenet_v2(pretrained=False, local_rank=None, norm_layer=None):
     return model
 
 if __name__ == '__main__':
-    net = get_mobilenet_v2(pretrained='./pretrained_backbones/mobilenetv2-imagenet.pth', norm_layer=nn.BatchNorm2d).cuda()
+    net = get_mobilenet_v2(pretrained='/home/sergey/DEV/AI/AEI/pretrained_backbones/mobilenet_v2.pth', norm_layer=nn.BatchNorm2d).cuda()
     x = torch.randn(2, 3, 224, 224).cuda()
     print(net(x).size())
     

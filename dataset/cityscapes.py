@@ -14,6 +14,7 @@ from torchvision import transforms
 
 class CSTrainValSet(data.Dataset):
     def __init__(self, root, list_path, max_iters=None, crop_size=(512, 1024), scale=True, mirror=True, ignore_label=-1):
+        print('List path is:', list_path)
         self.root = root
         self.list_path = list_path
         self.crop_h, self.crop_w = crop_size

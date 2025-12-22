@@ -241,12 +241,17 @@ class Trainer(object):
         return cur_lr
 
     def reduce_tensor(self, tensor):
+        if not self.args.distributed:
+            return tensor
         rt = tensor.clone()
         dist.all_reduce(rt, op=dist.ReduceOp.SUM)
         return rt
 
 
+
     def reduce_mean_tensor(self, tensor):
+        if not self.args.distributed:
+            return tensor
         rt = tensor.clone()
         dist.all_reduce(rt, op=dist.ReduceOp.SUM)
         rt /= self.num_gpus
