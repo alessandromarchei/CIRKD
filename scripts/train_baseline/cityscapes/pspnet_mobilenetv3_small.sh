@@ -7,6 +7,7 @@ python train_baseline.py \
     --max-iterations 80000 \
     --data /home/sergey/DEV/AI/datasets/cityscapes/ \
     --save-dir checkpoints/baseline/cityscapes/ \
-    --save-dir-name psp_mobile_mobilenetv3_small_citys_baseline \
-    --pretrained-base /home/sergey/DEV/AI/AEI/pretrained_backbones/mobilenet_v3_small.pth
+    --save-dir-name psp_mobile_mobilenetv3_small_citys_baseline_theirlink \
+    --pretrained-base /home/sergey/DEV/AI/AEI/other_methods/CIRKD/mobilenet_v3_small-47085aa1.pth
+    #--pretrained-base /home/sergey/DEV/AI/AEI/pretrained_backbones/mobilenet_v3_small.pth          #from pytorch link
 

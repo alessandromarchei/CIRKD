@@ -8,5 +8,8 @@ python train_baseline.py \
     --data /home/sergey/DEV/AI/datasets/cityscapes/ \
     --save-dir checkpoints/baseline/cityscapes/ \
     --save-dir-name psp_resnet18_citys_baseline \
-    --pretrained-base /home/sergey/DEV/AI/AEI/pretrained_backbones/resnet18.pth
-
+    --pretrained-base /home/sergey/DEV/AI/AEI/other_methods/CIRKD/resnet18-imagenet.pth
+    # --pretrained-base /home/sergey/DEV/AI/AEI/pretrained_backbones/resnet18.pth
+    # --pretrained-base /home/sergey/DEV/AI/AEI/other_methods/CIRKD/resnet18-imagenet.pth
+    
+    
