@@ -10,7 +10,7 @@ python -m torch.distributed.launch --nproc_per_node=8 \
     --optimizer-type adamw \
     --crop-size 1024 1024 \
     --max-iterations 160000 \
-    --data /data/winycg/dataset/segmentation/cityscape/ \
-    --save-dir /data/winycg/checkpoints/cirkd_checkpoints/cityscapes/checkpoints/ \
-    --log-dir /data/winycg/checkpoints/cirkd_checkpoints/cityscapes/logs/ \
+    --data /home/sergey/DEV/AI/datasets/cityscapes/ \
+    --save-dir checkpoints/baseline/cityscapes/ \
+    --log-dir checkpoints/cirkd_v2/cityscapes/logs/ \
     --pretrained /data/winycg/seg_model_zoo/imagenet_backbone/mit/mit_b0.pth

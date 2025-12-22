@@ -13,8 +13,8 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 \
     --lambda-minibatch-channel 1. \
     --lambda-memory-channel 0.1 \
     --lambda-channel-kd 100. \
-    --data /data/winycg/dataset/segmentation/cityscape/ \
-    --save-dir /data/winycg/checkpoints/cirkd_checkpoints/cityscapes/ \
+    --data /home/sergey/DEV/AI/datasets/cityscapes/ \
+    --save-dir checkpoints/cirkd_v2/cityscapes/ \
     --save-dir-name deeplabv3_resnet101_deeplabv3_resnet18_cirkdv2 \
     --teacher-pretrained /data/winycg/cirkd/teachers/deeplabv3_resnet101_citys_best_model.pth \
     --student-pretrained-base /data/winycg/cirkd/pretrained_backbones/resnet18-imagenet.pth

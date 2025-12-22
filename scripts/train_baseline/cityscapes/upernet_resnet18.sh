@@ -8,8 +8,8 @@ python -m torch.distributed.launch --nproc_per_node=4 \
     --batch-size 8 \
     --lr 0.01 \
     --max-iterations 80000 \
-    --data /data/winycg/dataset/segmentation/cityscape/ \
-    --save-dir /data/winycg/checkpoints/cirkd_checkpoints/cityscapes/ \
+    --data /home/sergey/DEV/AI/datasets/cityscapes/ \
+    --save-dir checkpoints/baseline/cityscapes/ \
     --save-dir-name upernet_lite_resnet18_citys_baseline \
     --pretrained-base /data/winycg/cirkd/pretrained_backbones/resnet18-imagenet.pth
 

@@ -6,6 +6,6 @@ python train_baseline.py \
     --lr 0.01 \
     --max-iterations 80000 \
     --data /home/sergey/DEV/AI/datasets/cityscapes/ \
-    --save-dir runs/checkpoints/cityscapes/ \
+    --save-dir checkpoints/baseline/cityscapes/ \
     --save-dir-name deeplabv3_mobilenet_ssseg_mobilenetv2_citys_baseline \
-    --pretrained-base /home/sergey/DEV/AI/datasets/winycg/imagenet_pretrained/mobilenet_v2-b0353104.pth
+    --pretrained-base /home/sergey/DEV/AI/AEI/pretrained_backbones//mobilenet_v2-b0353104.pth

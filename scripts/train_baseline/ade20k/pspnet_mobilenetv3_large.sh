@@ -12,5 +12,5 @@ python -m torch.distributed.launch --nproc_per_node=4 \
     --data /data/winycg/dataset/segmentation/ade20k/ADEChallengeData2016/ \
     --save-dir /data/winycg/checkpoints/cirkd_checkpoints/ade20k/ \
     --save-dir-name deeplabv3_mobilenet_ssseg_mobilenetv3_large_ade20k_baseline \
-    --pretrained-base /data/winycg/imagenet_pretrained/mobilenet_v3_large-bc2c3fd3.pth
+    --pretrained-base /home/sergey/DEV/AI/AEI/pretrained_backbones//mobilenet_v3_large-bc2c3fd3.pth
 

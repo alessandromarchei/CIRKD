@@ -7,7 +7,7 @@ python -m torch.distributed.launch --nproc_per_node=8  \
     --teacher-backbone MiT_B4 \
     --student-backbone MiT_B0 \
     --dataset citys \
-    --data /data/winycg/dataset/segmentation/cityscape/ \
+    --data /home/sergey/DEV/AI/datasets/cityscapes/ \
     --batch-size 8 \
     --workers 16 \
     --crop-size 1024 1024 \
@@ -27,7 +27,7 @@ python -m torch.distributed.launch --nproc_per_node=8  \
     --lambda-memory-region 0.1 \
     --lr 0.0002 \
     --max-iterations 160000 \
-    --save-dir /data/winycg/checkpoints/cirkd_checkpoints/cityscapes/ \
+    --save-dir checkpoints/cirkd_v2/cityscapes/ \
     --save-dir-name segformer_MiT_B4_segformer_MiT_B0_cirkdv2 \
     --teacher-pretrained /data/winycg/seg_model_zoo/segformer/segformer_MiT_B4_citys_best_model.pth \
     --student-pretrained /data/winycg/seg_model_zoo/imagenet_backbone/mit/mit_b0.pth

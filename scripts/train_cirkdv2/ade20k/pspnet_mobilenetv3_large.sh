@@ -19,4 +19,4 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 \
     --save-dir /data/winycg/checkpoints/cirkd_checkpoints/ade20k/ \
     --save-dir-name deeplabv3_resnet101_psp_mobile_mobilenetv3_large_cirkdv2 \
     --teacher-pretrained /data/winycg/cirkd/teachers/deeplabv3_resnet101_ade20k_best_model.pth \
-    --student-pretrained-base /data/winycg/imagenet_pretrained/mobilenet_v3_large-bc2c3fd3.pth
+    --student-pretrained-base /home/sergey/DEV/AI/AEI/pretrained_backbones//mobilenet_v3_large-bc2c3fd3.pth

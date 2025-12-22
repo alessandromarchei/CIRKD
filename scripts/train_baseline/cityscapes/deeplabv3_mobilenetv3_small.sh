@@ -8,7 +8,7 @@ python -m torch.distributed.launch --nproc_per_node=4 \
     --batch-size 8 \
     --lr 0.01 \
     --max-iterations 80000 \
-    --data /data/winycg/dataset/segmentation/cityscape/ \
-    --save-dir /data/winycg/checkpoints/cirkd_checkpoints/cityscapes/ \
+    --data /home/sergey/DEV/AI/datasets/cityscapes/ \
+    --save-dir checkpoints/baseline/cityscapes/\
     --save-dir-name deeplabv3_mobilenet_ssseg_mobilenetv3_small_citys_baseline \
-    --pretrained-base /data/winycg/imagenet_pretrained/mobilenet_v3_small-47085aa1.pth
+    --pretrained-base /home/sergey/DEV/AI/AEI/pretrained_backbones//mobilenet_v3_small-47085aa1.pth

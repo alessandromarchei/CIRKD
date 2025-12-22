@@ -13,4 +13,4 @@ python -m torch.distributed.launch --nproc_per_node=4 \
     --data /data/winycg/dataset/segmentation/coco_stuff_164K \
     --save-dir /data/winycg/checkpoints/cirkd_checkpoints/coco_stuff_164k/ \
     --save-dir-name deeplabv3_mobilenet_ssseg_mobilenetv3_large_coco_stuff_164k_baseline \
-    --pretrained-base /data/winycg/imagenet_pretrained/mobilenet_v3_small-47085aa1.pth
+    --pretrained-base /home/sergey/DEV/AI/AEI/pretrained_backbones//mobilenet_v3_small-47085aa1.pth

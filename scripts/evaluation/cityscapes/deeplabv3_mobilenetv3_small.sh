@@ -4,7 +4,7 @@ python -m torch.distributed.launch --nproc_per_node=4 --master_port 12365 \
     --model deeplabv3_mobilenet_ssseg \
     --backbone mobilenetv3_small \
     --dataset citys \
-    --data /data/winycg/dataset/segmentation/cityscape/ \
+    --data /home/sergey/DEV/AI/datasets/cityscapes/ \
     --save-dir /data/winycg/checkpoints/cirkd_checkpoints/visualization \
     --save-pred \
     --pretrained [your trained .pth file]
