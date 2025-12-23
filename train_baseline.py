@@ -71,6 +71,8 @@ def parse_args():
                         help='optimizer type')
     parser.add_argument('--ignore-label', type=int, default=-1, metavar='N',
                         help='input batch size for training (default: 8)')
+    parser.add_argument('--aspp_out_channels', type=int, default=128,
+                        help='output channels for aspp module')
     
     # cuda setting
     parser.add_argument('--gpu-id', type=str, default='0') 
@@ -159,6 +161,8 @@ class Trainer(object):
         else:
             raise ValueError('dataset unfind')
 
+        #include the aspp_out_channels inside the kwargs
+        model_kwargs = {'aspp_out_channels': args.aspp_out_channels}
 
 
         # create network
@@ -170,7 +174,8 @@ class Trainer(object):
                                             pretrained_base=args.pretrained_base,
                                             aux=args.aux, 
                                             norm_layer=BatchNorm2d,
-                                            num_class=train_dataset.num_class).to(self.device)
+                                            num_class=train_dataset.num_class).to(self.device),
+                                            **model_kwargs)
         
         with torch.no_grad():
             self.model.eval()

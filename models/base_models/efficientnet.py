@@ -28,14 +28,14 @@ __all__ = [
 
 
 EFFICIENTNET_CHANNELS = {
-    "efficientnet_b0": [32, 16, 24, 40, 80, 112, 192, 320],
-    "efficientnet_b1": [32, 16, 24, 40, 80, 112, 192, 320],
-    "efficientnet_b2": [32, 16, 24, 48, 88, 120, 208, 352],
-    "efficientnet_b3": [32, 24, 32, 48, 96, 136, 232, 384],
-    "efficientnet_b4": [32, 24, 32, 56, 112, 160, 272, 448],
-    "efficientnet_b5": [32, 24, 40, 64, 128, 176, 304, 512],
-    "efficientnet_b6": [32, 32, 40, 72, 144, 200, 344, 576],
-    "efficientnet_b7": [32, 32, 48, 80, 160, 224, 384, 640],
+    "efficientnet_b0": [32, 16, 24, 40, 80, 112, 192, 320, 1280],
+    "efficientnet_b1": [32, 16, 24, 40, 80, 112, 192, 320, 1280],
+    "efficientnet_b2": [32, 16, 24, 48, 88, 120, 208, 352, 1408],
+    "efficientnet_b3": [32, 24, 32, 48, 96, 136, 232, 384, 1536],
+    "efficientnet_b4": [32, 24, 32, 56, 112, 160, 272, 448, 1792],
+    "efficientnet_b5": [32, 24, 40, 64, 128, 176, 304, 512, 2048],
+    "efficientnet_b6": [32, 32, 40, 72, 144, 200, 344, 576, 2304],
+    "efficientnet_b7": [32, 32, 48, 80, 160, 224, 384, 640, 2560],
 }
 
 
@@ -44,7 +44,7 @@ EFFICIENTNET_CHANNELS = {
 # ------------------------------------------------------------
 
 class EfficientNetBackbone(nn.Module):
-    def __init__(self, model_name, pretrained=True, out_indices=[8]):
+    def __init__(self, model_name, pretrained=True, out_indices=[7]):
         super().__init__()
 
         self.model_name = model_name
@@ -74,28 +74,28 @@ class EfficientNetBackbone(nn.Module):
 # ------------------------------------------------------------
 # Factory functions (API-compatible)
 # ------------------------------------------------------------
-def get_efficientnet_b0(pretrained=True, out_indices=[8]):
+def get_efficientnet_b0(pretrained=True, out_indices=[7]):
     return EfficientNetBackbone("efficientnet_b0", pretrained, out_indices=out_indices)
 
-def get_efficientnet_b1(pretrained=True, out_indices=[8]):
+def get_efficientnet_b1(pretrained=True, out_indices=[7]):
     return EfficientNetBackbone("efficientnet_b1", pretrained, out_indices=out_indices)
 
-def get_efficientnet_b2(pretrained=True, out_indices=[8]):
+def get_efficientnet_b2(pretrained=True, out_indices=[7]):
     return EfficientNetBackbone("efficientnet_b2", pretrained, out_indices=out_indices)
 
-def get_efficientnet_b3(pretrained=True, out_indices=[8]):
+def get_efficientnet_b3(pretrained=True, out_indices=[7]):
     return EfficientNetBackbone("efficientnet_b3", pretrained, out_indices=out_indices)
 
-def get_efficientnet_b4(pretrained=True, out_indices=[8]):
+def get_efficientnet_b4(pretrained=True, out_indices=[7]):
     return EfficientNetBackbone("efficientnet_b4", pretrained, out_indices=out_indices)
 
-def get_efficientnet_b5(pretrained=True, out_indices=[8]):
+def get_efficientnet_b5(pretrained=True, out_indices=[7]):
     return EfficientNetBackbone("efficientnet_b5", pretrained, out_indices=out_indices)
 
-def get_efficientnet_b6(pretrained=True, out_indices=[8]):
+def get_efficientnet_b6(pretrained=True, out_indices=[7]):
     return EfficientNetBackbone("efficientnet_b6", pretrained, out_indices=out_indices)
 
-def get_efficientnet_b7(pretrained=True, out_indices=[8]):
+def get_efficientnet_b7(pretrained=True, out_indices=[7]):
     return EfficientNetBackbone("efficientnet_b7", pretrained, out_indices=out_indices)
 
 # ------------------------------------------------------------

@@ -48,6 +48,7 @@ class DeepLabV3(SegBaseModel):
 
         x, x_feat_after_aspp = self.head(c4)
 
+        #auxiliary head used for deep supervision, for the resnet blocks, to match the teacher number of layers
         if self.aux:
             auxout = self.auxlayer(c3)
         return [x, auxout, x_feat_after_aspp]
@@ -80,18 +81,21 @@ class _DeepLabHead(nn.Module):
             out_channels = 512
         else:
             raise 
+        
 
+        #block + output classifier
         self.block = nn.Sequential(
-            nn.Conv2d(out_channels, out_channels, 3, padding=1, bias=False),
-            norm_layer(out_channels, **({} if norm_kwargs is None else norm_kwargs)),
-            nn.ReLU(True),
-            nn.Dropout(0.1),
-            nn.Conv2d(out_channels, nclass, 1)
+            nn.Conv2d(out_channels, out_channels, 3, padding=1, bias=False),            #self.block[0]
+            norm_layer(out_channels, **({} if norm_kwargs is None else norm_kwargs)),   #self.block[1]
+            nn.ReLU(True),                                                              #self.block[2]
+            nn.Dropout(0.1),                                                            #self.block[3]
+            nn.Conv2d(out_channels, nclass, 1)                                          #self.block[4]                             
         )
 
     def forward(self, x):
-        x = self.aspp(x)
-        x = self.block[0:4](x)
+        x = self.aspp(x)        #input : (B,512,H/16,W/16) or (B,2048,H/16,W/16) -> output : (B,512,H/16,W/16)
+
+        x = self.block[0:4](x)  #output : (B,512,H/16,W/16)
         x_feat_after_aspp = x
         x = self.block[4](x)
         return x, x_feat_after_aspp

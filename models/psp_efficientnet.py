@@ -21,7 +21,7 @@ __all__ = ['get_efficientnet_b0',
 
 class PSPNet(nn.Module):
 
-    def __init__(self, nclass, backbone='efficientnet_b0', pretrained_base=True, out_indices=[8], **kwargs):
+    def __init__(self, nclass, backbone='efficientnet_b0', pretrained_base=True, out_indices=[7], **kwargs):
         super(PSPNet, self).__init__()
 
         if backbone == 'efficientnet_b0':
