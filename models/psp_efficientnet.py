@@ -26,47 +26,43 @@ class PSPNet(nn.Module):
 
         if backbone == 'efficientnet_b0':
             self.pretrained = get_efficientnet_b0(pretrained_base, out_indices=out_indices)
-            in_channels = self.pretrained.out_channels
+            in_channels = self.pretrained.out_channels_last
             self.head = _PSPHead(in_channels, nclass, **kwargs)
         elif backbone == 'efficientnet_b1':
             self.pretrained = get_efficientnet_b1(pretrained_base, out_indices=out_indices)
-            in_channels = self.pretrained.out_channels
+            in_channels = self.pretrained.out_channels_last
             self.head = _PSPHead(in_channels, nclass, **kwargs)
         elif backbone == 'efficientnet_b2':
             self.pretrained = get_efficientnet_b2(pretrained_base, out_indices=out_indices)
-            in_channels = self.pretrained.out_channels
+            in_channels = self.pretrained.out_channels_last
             self.head = _PSPHead(in_channels, nclass, **kwargs)
         elif backbone == 'efficientnet_b3':
             self.pretrained = get_efficientnet_b3(pretrained_base, out_indices=out_indices)
-            in_channels = self.pretrained.out_channels
+            in_channels = self.pretrained.out_channels_last
             self.head = _PSPHead(in_channels, nclass, **kwargs)
         elif backbone == 'efficientnet_b1':
             self.pretrained = get_efficientnet_b4(pretrained_base, out_indices=out_indices)
-            in_channels = self.pretrained.out_channels
+            in_channels = self.pretrained.out_channels_last
             self.head = _PSPHead(in_channels, nclass, **kwargs)
         elif backbone == 'efficientnet_b2':
             self.pretrained = get_efficientnet_b5(pretrained_base, out_indices=out_indices)
-            in_channels = self.pretrained.out_channels
+            in_channels = self.pretrained.out_channels_last
             self.head = _PSPHead(in_channels, nclass, **kwargs)
         elif backbone == 'efficientnet_b3':
             self.pretrained = get_efficientnet_b6(pretrained_base, out_indices=out_indices)
-            in_channels = self.pretrained.out_channels
+            in_channels = self.pretrained.out_channels_last
             self.head = _PSPHead(in_channels, nclass, **kwargs)
         elif backbone == 'efficientnet_b3':
             self.pretrained = get_efficientnet_b7(pretrained_base, out_indices=out_indices)
-            in_channels = self.pretrained.out_channels
+            in_channels = self.pretrained.out_channels_last
             self.head = _PSPHead(in_channels, nclass, **kwargs)
         else:
             raise KeyError('no such network')
 
     def forward(self, x):
-
-        #get the output features of the backbone
-        c4 = self.pretrained(x)
-
-        #pass these features to the psp head (return the concatenation of the pooled features and the classifier output)
+        feats = self.pretrained(x)   # list[Tensor]
+        c4 = feats[-1]               # usa l’ultimo out_indices
         x, features = self.head(c4)
-
         return [x, features]
 
 
