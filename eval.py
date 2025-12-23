@@ -160,6 +160,9 @@ class Evaluator(object):
     def eval(self):
         self.metric.reset()
         self.model.eval()
+
+        miou_list = []      #to fill with mIoU of each image
+        pixAcc_list = []    #to fill with pixAcc of each image
         if self.args.distributed:
             model = self.model.module
         else:
@@ -189,6 +192,10 @@ class Evaluator(object):
             
             self.metric.update(full_probs, target)
             pixAcc, mIoU = self.metric.get()
+
+            miou_list.append(mIoU)
+            pixAcc_list.append(pixAcc)
+
             logger.info("Sample: {:d}, validation pixAcc: {:.3f}, mIoU: {:.3f}".format(
                 i + 1, pixAcc * 100, mIoU * 100))
 
@@ -216,6 +223,13 @@ class Evaluator(object):
 
             logger.info("Overall validation pixAcc: {:.3f}, mIoU: {:.3f}".format(
             pixAcc.item() * 100, mIoU * 100))
+
+        else:
+            #compute the average mIoU and pixAcc over all images
+            avg_miou = np.mean(miou_list)
+            avg_pixAcc = np.mean(pixAcc_list)
+            logger.info("Overall validation pixAcc: {:.3f}, mIoU: {:.3f}".format(
+            avg_pixAcc * 100, avg_miou * 100))
 
         synchronize()
 
