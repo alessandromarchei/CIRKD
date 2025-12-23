@@ -7,6 +7,7 @@ from .psp_mobile import *
 from .segformer import *
 from .deeplabv3_mobilenetv3 import *
 from .upernet import *
+from .psp_efficientnet import *
 
 __all__ = ['get_segmentation_model']
 
@@ -21,5 +22,6 @@ def get_segmentation_model(model, **kwargs):
         'deeplabv3_mobilenet_ssseg': get_deeplabv3_mobilenet_ssseg,
         'upernet': get_upernet,
         'upernet_lite': get_upernet_lite,
+        'psp_efficientnet': get_psp_efficientnet,
     }
     return models[model](**kwargs)

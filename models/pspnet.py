@@ -107,6 +107,8 @@ class _PSPHead(nn.Module):
         super(_PSPHead, self).__init__()
         self.psp = _PyramidPooling(in_channels, norm_layer=norm_layer, norm_kwargs=norm_kwargs)
 
+
+        #output channels of the PSPhead are dependent on the backbone used
         if in_channels == 512:
             out_channels = 128
         elif in_channels == 2048:
@@ -122,10 +124,10 @@ class _PSPHead(nn.Module):
         self.classifier = nn.Conv2d(out_channels, nclass, 1)
 
     def forward(self, x):
-        x = self.psp(x)
-        x = self.block(x)
+        x = self.psp(x)     #output from the ppm module (concatenation of the 4 levels and the original feature map)
+        x = self.block(x)   #further conv layers after the ppm module
         feature = x
-        x = self.classifier(x)
+        x = self.classifier(x)  #final classifier layer
         return x, feature
 
 

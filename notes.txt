@@ -19,3 +19,5 @@ TODO: training with their pretrained weights for mobilenet v3 small + PSPNet
 
 EVALUATING : DEEPLABV3+ and resnet101 (from their link), we get the same results as in the paper (about 0.78 mIOU on cityscapes val)
 
+TRAINING on the conv3x3 mobilenet v3 gives the same results of authors
+
