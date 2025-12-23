@@ -100,7 +100,14 @@ class _PSPHead(nn.Module):
     def __init__(self, in_channels, nclass, norm_layer=nn.BatchNorm2d, norm_kwargs=None, **kwargs):
         super(_PSPHead, self).__init__()
         self.psp = _PyramidPooling(in_channels, norm_layer=norm_layer, norm_kwargs=norm_kwargs)
-        out_channels = 128
+        print('PSPNet input channels to classifier:', in_channels)
+        
+        #compute the output channels after PPM
+        out_channels = int(in_channels / 4)
+        
+        #clamp to minimum 128 channels
+        if out_channels < 128:
+            out_channels = 128
         
         self.block = nn.Sequential(
             nn.Conv2d(in_channels * 2, out_channels, 3, padding=1, bias=False),
