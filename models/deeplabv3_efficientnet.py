@@ -88,6 +88,7 @@ class _DeepLabHead(nn.Module):
         self.aspp = _ASPP(in_channels, [12, 24, 36], norm_layer=norm_layer, norm_kwargs=norm_kwargs, **kwargs)
         
         #retrieve out channels from the kwargs or set to default 128
+        print("DeepLabHead kwargs:", kwargs)
         out_channels = kwargs.get('aspp_out_channels', 128)
 
         self.block = nn.Sequential(

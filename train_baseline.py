@@ -174,8 +174,8 @@ class Trainer(object):
                                             pretrained_base=args.pretrained_base,
                                             aux=args.aux, 
                                             norm_layer=BatchNorm2d,
-                                            num_class=train_dataset.num_class).to(self.device),
-                                            **model_kwargs)
+                                            num_class=train_dataset.num_class,
+                                            **model_kwargs).to(self.device)
         
         with torch.no_grad():
             self.model.eval()
