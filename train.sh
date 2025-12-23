@@ -1,0 +1,3 @@
+bash scripts/train_baseline/cityscapes/pspnet_efficientnetb0.sh
+bash scripts/train_baseline/cityscapes/pspnet_efficientnetb0_2.sh
+bash scripts/train_baseline/cityscapes/pspnet_efficientnetb1.sh
