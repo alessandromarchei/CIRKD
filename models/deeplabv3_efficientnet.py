@@ -40,19 +40,19 @@ class DeepLabV3(nn.Module):
             self.pretrained = get_efficientnet_b3(pretrained_base, out_indices=out_indices)
             in_channels = self.pretrained.out_channels_last
             self.head = _DeepLabHead(in_channels, nclass, **kwargs)
-        elif backbone == 'efficientnet_b1':
+        elif backbone == 'efficientnet_b4':
             self.pretrained = get_efficientnet_b4(pretrained_base, out_indices=out_indices)
             in_channels = self.pretrained.out_channels_last
             self.head = _DeepLabHead(in_channels, nclass, **kwargs)
-        elif backbone == 'efficientnet_b2':
+        elif backbone == 'efficientnet_b5':
             self.pretrained = get_efficientnet_b5(pretrained_base, out_indices=out_indices)
             in_channels = self.pretrained.out_channels_last
             self.head = _DeepLabHead(in_channels, nclass, **kwargs)
-        elif backbone == 'efficientnet_b3':
+        elif backbone == 'efficientnet_b6':
             self.pretrained = get_efficientnet_b6(pretrained_base, out_indices=out_indices)
             in_channels = self.pretrained.out_channels_last
             self.head = _DeepLabHead(in_channels, nclass, **kwargs)
-        elif backbone == 'efficientnet_b3':
+        elif backbone == 'efficientnet_b7':
             self.pretrained = get_efficientnet_b7(pretrained_base, out_indices=out_indices)
             in_channels = self.pretrained.out_channels_last
             self.head = _DeepLabHead(in_channels, nclass, **kwargs)

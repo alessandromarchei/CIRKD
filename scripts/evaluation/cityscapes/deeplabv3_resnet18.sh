@@ -1,14 +1,5 @@
-CUDA_VISIBLE_DEVICES=0,1,2,3 \
-python -m torch.distributed.launch --nproc_per_node=4 --master_port 12365 \
-    test.py \
+python eval.py \
     --model deeplabv3 \
     --backbone resnet18 \
-    --dataset citys \
     --data /home/sergey/DEV/AI/datasets/cityscapes/ \
-    --save-dir /data/winycg/checkpoints/cirkd_checkpoints/visualization \
-    --save-pred \
-    --pretrained [your trained .pth file]
-
-
-
-
+    --pretrained checkpoints/baseline/cityscapes/deeplabv3_resnet18_citys_baseline/deeplabv3_resnet18_citys_best_model.pth

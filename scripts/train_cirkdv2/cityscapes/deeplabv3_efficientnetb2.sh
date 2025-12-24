@@ -1,8 +1,8 @@
 python train_cirkdv2.py \
     --teacher-model deeplabv3 \
-    --student-model deeplabv3 \
+    --student-model deeplabv3_efficientnet \
     --teacher-backbone resnet101 \
-    --student-backbone resnet18 \
+    --student-backbone efficientnet_b2 \
     --batch-size 8 \
     --lr 0.01 \
     --max-iterations 80000 \
@@ -12,6 +12,7 @@ python train_cirkdv2.py \
     --lambda-channel-kd 100. \
     --data /home/sergey/DEV/AI/datasets/cityscapes/ \
     --save-dir checkpoints/cirkd_v2/cityscapes/ \
-    --save-dir-name deeplabv3_resnet101_deeplabv3_resnet18_cirkdv2 \
+    --save-dir-name deeplabv3_resnet101_deeplabv3_efficientnetb2_cirkdv2 \
     --teacher-pretrained /home/sergey/DEV/AI/AEI/other_methods/CIRKD/deeplabv3_resnet101_citys_best_model.pth \
-    --student-pretrained-base /home/sergey/DEV/AI/AEI/other_methods/CIRKD/resnet18-imagenet.pth
+    --student-pretrained-base /home/sergey/DEV/AI/AEI/pretrained_backbones/efficientnet_b2.pth \
+    --aspp_out_channels 320 \

@@ -71,7 +71,10 @@ def parse_args():
                         help='w-decay (default: 5e-4)')
     parser.add_argument('--optimizer-type', type=str, default='sgd',
                         help='optimizer type')
-
+    parser.add_argument('--aspp_out_channels', type=int, default=128,
+                        help='output channels for aspp module')
+    
+    
     parser.add_argument('--pixel-memory-size', type=int, default=20000)
     parser.add_argument('--region-memory-size', type=int, default=2000)
     parser.add_argument('--channel-memory-size', type=int, default=10000)
@@ -197,6 +200,9 @@ class Trainer(object):
         # create network
         BatchNorm2d = nn.SyncBatchNorm if args.distributed else nn.BatchNorm2d
 
+        model_kwargs = {'aspp_out_channels': args.aspp_out_channels}
+
+
         self.t_model = get_segmentation_model(model=args.teacher_model, 
                                             backbone=args.teacher_backbone,
                                             local_rank=args.local_rank,
@@ -213,7 +219,8 @@ class Trainer(object):
                                             pretrained='None',
                                             aux=args.aux, 
                                             norm_layer=BatchNorm2d,
-                                            num_class=train_dataset.num_class).to(self.device)
+                                            num_class=train_dataset.num_class,
+                                            **model_kwargs).to(self.device)
         
         for t_n, t_p in self.t_model.named_parameters():
             t_p.requires_grad = False

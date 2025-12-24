@@ -46,6 +46,8 @@ def parse_args():
                         help='crop image size: [height, width]')
     parser.add_argument('--workers', '-j', type=int, default=8,
                         metavar='N', help='dataloader threads')
+    parser.add_argument('--aspp_out_channels', type=int, default=128,
+                        help='output channels for aspp module')
     
     # training hyper params
     parser.add_argument('--aux', action='store_true', default=False,
@@ -106,6 +108,8 @@ class Evaluator(object):
         # create network
         BatchNorm2d = nn.SyncBatchNorm if args.distributed else nn.BatchNorm2d
 
+        model_kwargs = {'aspp_out_channels': args.aspp_out_channels}
+
         if 'former' in args.model:
             self.model = get_segmentation_model(model=args.model,
                                                 backbone=args.backbone, 
@@ -121,7 +125,8 @@ class Evaluator(object):
                                     pretrained_base='None',
                                     local_rank=args.local_rank,
                                     norm_layer=BatchNorm2d,
-                                    num_class=self.val_dataset.num_class).to(self.device)
+                                    num_class=self.val_dataset.num_class,
+                                    **model_kwargs).to(self.device)
 
         self.model.eval()
         with torch.no_grad():
