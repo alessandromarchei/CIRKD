@@ -26,7 +26,10 @@ __all__ = [
     "get_efficientnet_b7",
 ]
 
-
+ #strides over channels:
+ # [stem, stage1, stage2, stage3, stage4, stage5, stage6, stage7, head]
+ # strides per channels:
+ # [2, 1, 2, 2, 2, 1, 2, 1, 1]
 EFFICIENTNET_CHANNELS = {
     "efficientnet_b0": [32, 16, 24, 40, 80, 112, 192, 320, 1280],
     "efficientnet_b1": [32, 16, 24, 40, 80, 112, 192, 320, 1280],

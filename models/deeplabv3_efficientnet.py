@@ -23,7 +23,7 @@ class DeepLabV3(nn.Module):
     def __init__(self, nclass, backbone='efficientnet_b0', local_rank=None, pretrained_base=True, out_indices=[7], **kwargs):
         super(DeepLabV3, self).__init__()
         
-
+        print("out_indices for DeepLabV3 with EfficientNet:", out_indices)
         if backbone == 'efficientnet_b0':
             self.pretrained = get_efficientnet_b0(pretrained_base, out_indices=out_indices)
             in_channels = self.pretrained.out_channels_last
@@ -177,7 +177,7 @@ class _ASPP(nn.Module):
 
 def get_deeplabv3_efficientnet(backbone='efficientnet_b0', local_rank=None, pretrained=None, 
                   pretrained_base=True, num_class=19, **kwargs):
-    model = DeepLabV3(num_class, backbone=backbone, local_rank=local_rank, pretrained_base=pretrained_base, **kwargs)
+    model = DeepLabV3(num_class, backbone=backbone, local_rank=local_rank, pretrained_base=pretrained_base, out_indices=[7], **kwargs)
     
     if pretrained != 'None':
         if local_rank is not None:
