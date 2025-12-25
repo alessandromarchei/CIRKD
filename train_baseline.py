@@ -73,6 +73,8 @@ def parse_args():
                         help='input batch size for training (default: 8)')
     parser.add_argument('--aspp_out_channels', type=int, default=128,
                         help='output channels for aspp module')
+    parser.add_argument('--out_indices', type=int, default=7,
+                        help='indices, starting from 0, to choose which feature map to be the output of the backbone')
     
     # cuda setting
     parser.add_argument('--gpu-id', type=str, default='0') 
@@ -162,7 +164,9 @@ class Trainer(object):
             raise ValueError('dataset unfind')
 
         #include the aspp_out_channels inside the kwargs
-        model_kwargs = {'aspp_out_channels': args.aspp_out_channels}
+        if "efficientnet" in args.backbone:
+            model_kwargs = {'aspp_out_channels': args.aspp_out_channels}
+            model_kwargs['out_indices'] = args.out_indices
 
 
         # create network

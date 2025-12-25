@@ -48,6 +48,8 @@ def parse_args():
                         metavar='N', help='dataloader threads')
     parser.add_argument('--aspp_out_channels', type=int, default=128,
                         help='output channels for aspp module')
+    parser.add_argument('--out_indices', type=int, default=[7], nargs='+',
+                        help='output feature maps at these indices from backbone')
     
     # training hyper params
     parser.add_argument('--aux', action='store_true', default=False,
@@ -108,7 +110,10 @@ class Evaluator(object):
         # create network
         BatchNorm2d = nn.SyncBatchNorm if args.distributed else nn.BatchNorm2d
 
-        model_kwargs = {'aspp_out_channels': args.aspp_out_channels}
+        #include the aspp_out_channels inside the kwargs
+        if "efficientnet" in args.backbone:
+            model_kwargs = {'aspp_out_channels': args.aspp_out_channels}
+            model_kwargs['out_indices'] = args.out_indices
 
         if 'former' in args.model:
             self.model = get_segmentation_model(model=args.model,

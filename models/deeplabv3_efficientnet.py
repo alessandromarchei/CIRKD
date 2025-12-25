@@ -20,40 +20,40 @@ __all__ = ['get_efficientnet_b0',
 
 class DeepLabV3(nn.Module):
 
-    def __init__(self, nclass, backbone='efficientnet_b0', local_rank=None, pretrained_base=True, out_indices=[7], **kwargs):
+    def __init__(self, nclass, backbone='efficientnet_b0', local_rank=None, pretrained_base=True, **kwargs):
         super(DeepLabV3, self).__init__()
         
-        print("out_indices for DeepLabV3 with EfficientNet:", out_indices)
+        print("out_indices for DeepLabV3 with EfficientNet:", kwargs.get('out_indices'))
         if backbone == 'efficientnet_b0':
-            self.pretrained = get_efficientnet_b0(pretrained_base, out_indices=out_indices)
+            self.pretrained = get_efficientnet_b0(pretrained_base, out_indices=kwargs.get('out_indices', [7]))
             in_channels = self.pretrained.out_channels_last
             self.head = _DeepLabHead(in_channels, nclass, **kwargs)
         elif backbone == 'efficientnet_b1':
-            self.pretrained = get_efficientnet_b1(pretrained_base, out_indices=out_indices)
+            self.pretrained = get_efficientnet_b1(pretrained_base, out_indices=kwargs.get('out_indices', [7]))
             in_channels = self.pretrained.out_channels_last
             self.head = _DeepLabHead(in_channels, nclass, **kwargs)
         elif backbone == 'efficientnet_b2':
-            self.pretrained = get_efficientnet_b2(pretrained_base, out_indices=out_indices)
+            self.pretrained = get_efficientnet_b2(pretrained_base, out_indices=kwargs.get('out_indices', [7]))
             in_channels = self.pretrained.out_channels_last
             self.head = _DeepLabHead(in_channels, nclass, **kwargs)
         elif backbone == 'efficientnet_b3':
-            self.pretrained = get_efficientnet_b3(pretrained_base, out_indices=out_indices)
+            self.pretrained = get_efficientnet_b3(pretrained_base, out_indices=kwargs.get('out_indices', [7]))
             in_channels = self.pretrained.out_channels_last
             self.head = _DeepLabHead(in_channels, nclass, **kwargs)
         elif backbone == 'efficientnet_b4':
-            self.pretrained = get_efficientnet_b4(pretrained_base, out_indices=out_indices)
+            self.pretrained = get_efficientnet_b4(pretrained_base, out_indices=kwargs.get('out_indices', [7]))
             in_channels = self.pretrained.out_channels_last
             self.head = _DeepLabHead(in_channels, nclass, **kwargs)
         elif backbone == 'efficientnet_b5':
-            self.pretrained = get_efficientnet_b5(pretrained_base, out_indices=out_indices)
+            self.pretrained = get_efficientnet_b5(pretrained_base, out_indices=kwargs.get('out_indices', [7]))
             in_channels = self.pretrained.out_channels_last
             self.head = _DeepLabHead(in_channels, nclass, **kwargs)
         elif backbone == 'efficientnet_b6':
-            self.pretrained = get_efficientnet_b6(pretrained_base, out_indices=out_indices)
+            self.pretrained = get_efficientnet_b6(pretrained_base, out_indices=kwargs.get('out_indices', [7]))
             in_channels = self.pretrained.out_channels_last
             self.head = _DeepLabHead(in_channels, nclass, **kwargs)
         elif backbone == 'efficientnet_b7':
-            self.pretrained = get_efficientnet_b7(pretrained_base, out_indices=out_indices)
+            self.pretrained = get_efficientnet_b7(pretrained_base, out_indices=kwargs.get('out_indices', [7]))
             in_channels = self.pretrained.out_channels_last
             self.head = _DeepLabHead(in_channels, nclass, **kwargs)
         else:
@@ -177,7 +177,7 @@ class _ASPP(nn.Module):
 
 def get_deeplabv3_efficientnet(backbone='efficientnet_b0', local_rank=None, pretrained=None, 
                   pretrained_base=True, num_class=19, **kwargs):
-    model = DeepLabV3(num_class, backbone=backbone, local_rank=local_rank, pretrained_base=pretrained_base, out_indices=[7], **kwargs)
+    model = DeepLabV3(num_class, backbone=backbone, local_rank=local_rank, pretrained_base=pretrained_base, **kwargs)
     
     if pretrained != 'None':
         if local_rank is not None:
