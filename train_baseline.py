@@ -73,7 +73,7 @@ def parse_args():
                         help='input batch size for training (default: 8)')
     parser.add_argument('--aspp_out_channels', type=int, default=128,
                         help='output channels for aspp module')
-    parser.add_argument('--out_indices', type=int, default=7,
+    parser.add_argument('--out_indices', type=int, default=[7], nargs='+',
                         help='indices, starting from 0, to choose which feature map to be the output of the backbone')
     
     # cuda setting

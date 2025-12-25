@@ -62,6 +62,10 @@ class EfficientNetBackbone(nn.Module):
         self.out_channels = [stage_channels[i] for i in out_indices]
         self.out_channels_last = self.out_channels[-1]
 
+        #remove the last stages which are not utilized
+        max_index = max(out_indices)
+        self.features = self.features[: max_index + 1]
+
 
     def forward(self, x):
         feats = []
